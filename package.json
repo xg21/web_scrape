@@ -1,0 +1,19 @@
+{
+	"name": "apps.gx",
+	"version": "",
+	"dependencies": {
+		"body-parser": "^1.18.3",
+		"cheerio": "^1.0.0-rc.2",
+		"express": "^4.16.4",
+		"fs": "0.0.1-security",
+		"got": "^9.6.0",
+		"helpers.curl": "",
+		"plugins.package2": ""
+	},
+	"repository": "",
+	"description": "apps.srv",
+	"bundledFiles": {},
+	"depe": {
+		"helpers.curl": {}
+	}
+}

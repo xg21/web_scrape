@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>get company infomation</title>
+	<script src="jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+	<div class="container">
+		<fieldset>
+			<legend>Company</legend>
+			<input name="company" id="id_company" type="text" class="ghost-input" placeholder="Enter Company" required>
+			<input type="button" id="id_get" class="ghost-button" value="Get Info">
+		</fieldset>
+		<fieldset>
+			<legend>Data</legend>
+			<div id="id_price"></div>
+			<div id="id_trend"></div>
+			<div id="id_news"></div>
+			<div id="id_call"></div>
+		</fieldset>
+	</div>
+	<script>
+	jQuery(function ($)
+	{
+		var dataType = ['price', 'trend', 'news', 'call'];
+		$('#id_get').click(function ()
+		{
+			var company = $('#id_company').val();
+			if (company)
+			{
+				for (var i = 0; i < dataType.length; i++)
+				{
+					getData(company, dataType[i]);
+				}
+			}
+			else
+			{
+				alert('Company should NOT be empy!');
+			}
+		});			
+
+		function getData(company, type)
+		{
+			$('#id_' + type).empty();
+			$.getJSON('/api/', {'type': type, 'company': company}, function (json)
+			{
+				for (var key in json)
+				{
+					$('#id_' + type).append('<strong>' + key + ':</strong><br/>' + (json[key] instanceof Array ? json[key].join('<br/>') : json[key]) + '<hr/>');
+				}
+			});
+		}
+
+	});
+	</script>
+</body>
+</html>
